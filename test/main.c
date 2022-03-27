@@ -20,5 +20,8 @@ int main(void)
 	// Generate JUnit results
 	cmocka_set_message_output(CM_OUTPUT_XML);
 
+	// ADDED NEW LINE
+	overall_result = test_suite();
+
 	return overall_result;
 }

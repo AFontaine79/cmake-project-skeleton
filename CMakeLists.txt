@@ -8,7 +8,7 @@ set_property(GLOBAL PROPERTY C_STANDARD 11)
 
 include(cmake/CPM.cmake)
 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR LIBC_BUILD_TESTING)
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR PROJECTVARNAME_BUILD_TESTING)
     include(CTest)
 endif()
 
@@ -70,7 +70,7 @@ add_library(printf INTERFACE)
 target_sources(printf INTERFACE ${printf_SOURCE_DIR}/printf.c)
 target_include_directories(printf SYSTEM INTERFACE ${printf_SOURCE_DIR})
 
-if(LIBC_TESTING_IS_ENABLED)
+if(PROJECTVARNAME_TESTING_IS_ENABLED)
   add_executable(printf_tests)
   target_sources(printf_tests PRIVATE ${printf_SOURCE_DIR}/test/test_suite.cpp)
   target_include_directories(printf_tests PRIVATE ${printf_SOURCE_DIR})
@@ -109,7 +109,7 @@ install(DIRECTORY ${openlibm_SOURCE_DIR}/src DESTINATION include FILES_MATCHING 
 # CMocka Dependency #
 #####################
 
-if(LIBC_TESTING_IS_ENABLED)
+if(PROJECTVARNAME_TESTING_IS_ENABLED)
   find_package(cmocka QUIET)
   if(NOT cmocka_FOUND)
     CPMAddPackage(
