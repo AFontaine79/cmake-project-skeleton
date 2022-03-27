@@ -18,20 +18,22 @@ else()
   set(OPTION_DISABLE_BUILTINS_IS_ENABLED False)
 endif()
 
+option(ENABLE_PEDANTIC_ERROR
+  "Enable pedantic compiler warnings, and treat them as errors."
+  OFF)
 option(BUILD_WITH_STATIC_ANALYSIS
   "Enable static analysis output when building the project."
   OFF)
-option(HIDE_UNIMPLEMENTED_C_APIS
-	"Make unimplemented libc functions invisible to the compiler."
-	OFF)
-option(ENABLE_GNU_EXTENSIONS
-  "Enable GNU extensions to the standard libc functions."
-  OFF)
+
 option(DISABLE_STACK_PROTECTION
   "Disable stack smashing protection (-fno-stack-protector)."
   ON)
-option(NOSTDINC_FOR_DEPENDENTS
-  "Disable the -nostdinc flag when using the libc dependency."
+
+option(DISABLE_RTTI
+  "Disable runtime type information (RTTI) for C++."
+  OFF)
+option(DISABLE_EXCEPTIONS
+  "Disable exception handling for C++."
   OFF)
 
 CMAKE_DEPENDENT_OPTION(PROJECTVARNAME_BUILD_TESTING
@@ -59,6 +61,30 @@ set(USE_SANITIZER
     "" CACHE STRING
     "Compile with a sanitizer. Options are: Address, Memory, Leak, Undefined, Thread, 'Address;Undefined'"
 )
+
+if(DISABLE_RTTI)
+  add_compile_options(-fno-rtti)
+endif()
+
+if(DISABLE_EXCEPTIONS)
+  add_compile_options(-fno-exceptions -fno-unwind-tables)
+endif()
+
+if(DISABLE_BUILTINS)
+  add_compile_options(-fno-builtin)
+endif()
+
+if(DISABLE_STACK_PROTECTION)
+  add_compile_options(-fno-stack-protector)
+endif()
+
+if(ENABLE_PEDANTIC)
+  add_compile_options(-pedantic)
+endif()
+
+if(ENABLE_PEDANTIC_ERROR)
+  add_compile_options(-pedantic-error)
+endif()
 
 if("${ENABLE_LTO}")
   set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)

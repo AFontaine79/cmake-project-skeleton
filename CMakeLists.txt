@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.17)
-project(EmbeddedArtistryLibc
-	VERSION 1.0
-	DESCRIPTION "A libc implementation for microcontroller-based embedded systems."
+project(MYPROJECT
+	VERSION 0.1
+	DESCRIPTION "MYDESCRIPTION"
 	LANGUAGES C CXX ASM)
 
 set_property(GLOBAL PROPERTY C_STANDARD 11)
+set_property(GLOBAL PROPERTY CXX_STANDARD 17)
 
 include(cmake/CPM.cmake)
 
@@ -18,6 +19,9 @@ include(cmake/Conversions.cmake)
 
 include(BuildOptions.cmake)
 include(Packaging.cmake)
+
+include(cmake/debugging/PrintTargetProperties.cmake)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 ##################
 # Compiler Flags #

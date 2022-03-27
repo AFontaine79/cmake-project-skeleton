@@ -8,3 +8,5 @@ list(APPEND APP_private_compile_flags
 	"-Wno-unknown-pragmas"
 )
 apply_supported_compiler_flags(C APP PRIVATE APP_private_compile_flags)
+
+print_target_properties(APP)
