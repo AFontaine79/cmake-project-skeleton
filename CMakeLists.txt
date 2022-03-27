@@ -214,8 +214,7 @@ endif()
 # Process Source Tree #
 #######################
 
-add_subdirectory(arch/${CMAKE_SYSTEM_PROCESSOR})
-add_subdirectory(src)
+#add_subdirectory(src)
 
 #####################
 # Process Test Tree #

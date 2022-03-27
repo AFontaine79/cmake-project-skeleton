@@ -20,9 +20,5 @@ int main(void)
 	// Generate JUnit results
 	cmocka_set_message_output(CM_OUTPUT_XML);
 
-	overall_result |= ctype_tests();
-	overall_result |= string_tests();
-	overall_result |= stdlib_tests();
-
 	return overall_result;
 }
