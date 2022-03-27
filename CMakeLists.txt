@@ -20,8 +20,8 @@ include(cmake/Conversions.cmake)
 include(BuildOptions.cmake)
 include(Packaging.cmake)
 
-include(cmake/debugging/PrintTargetProperties.cmake)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+#include(cmake/debugging/PrintTargetProperties.cmake)
+#set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 ##################
 # Compiler Flags #
